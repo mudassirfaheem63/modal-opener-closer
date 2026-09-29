@@ -2,34 +2,29 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [isNotOpen, setIsNotOpen] = useState(false)
-   const boxStyle = {
-    backgroundColor:"black",
-    width:"100px",
-    height:"100px",
-    borderRadius:"50%",
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"center",
-    marginBottom:"30px"
-   }  
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div>
-      {isNotOpen && <div style={boxStyle}></div>}
-      <Button isNotOpen={isNotOpen} setIsNotOpen={setIsNotOpen} />
-    </div>
+    <main className="app">
+      <div className="panel">
+        <div className="stage">{isOpen && <div className="orb" />}</div>
+        <Button setIsOpen={setIsOpen} />
+      </div>
+    </main>
   )
 }
 
 export default App
 
-function Button ({setIsNotOpen}) {
-  return(
-    <div>
-      <button onClick={() =>{ 
-        setIsNotOpen(true)}} >Open Modal</button>
-      <button onClick={() => setIsNotOpen(false)}>Close Modal</button>
+function Button({ setIsOpen }) {
+  return (
+    <div className="actions">
+      <button className="btn btn--primary" onClick={() => setIsOpen(true)}>
+        Open Modal
+      </button>
+      <button className="btn" onClick={() => setIsOpen(false)}>
+        Close Modal
+      </button>
     </div>
   )
 }
